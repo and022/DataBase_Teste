@@ -25,6 +25,12 @@ class  Usuario (Base_dados):
     senha = Column("senha", String)
     ativo = Column("status", Boolean)
 
+    def __init__ (self, nome, email, senha, status=True):
+        self.nome = nome
+        self.email = email
+        self.senha = senha
+        self.status = status
+
 
 # Criando a classe produtos
 class Produto(Base_dados):
@@ -36,6 +42,12 @@ class Produto(Base_dados):
     # IMPORTANDO O foreingKey
     from sqlalchemy import ForeignKey
     dono = Column("dono", ForeignKey("usuarios.id"))
+
+    def __init__ (self, nome, qtde, dono):
+        self.nome = nome
+        self.qtde = qtde
+        self.dono = dono
+    
 
 Base_dados.metadata.create_all(bind=database)
 
