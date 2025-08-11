@@ -51,12 +51,40 @@ class Produto(Base_dados):
 
 Base_dados.metadata.create_all(bind=database)
 
-#criando as tabelas  nesse caso vou criar uma simples cadastro de usuarios e produtos
-#Para isso vou usar Classes init e o Self (padrao do python)
+# Crud da classe Usúario 
+# Adicionando um usuario novo
+Change_Put_Usuario = Usuario(nome="Andre Neri Batista",email="andry033@gmail,com",senha="03697//",status="ativo")
+session.add(Change_Put_Usuario)
+session.commit()
 
-# Criando a classe usuario 
+#fazendo a leitura dos dados R =  read
+print("id", Change_Put_Usuario.id)
+print("nome", Change_Put_Usuario.nome)
+print("email", Change_Put_Usuario.email)
+print("senha", Change_Put_Usuario.senha)
+print("status", Change_Put_Usuario.status)
 
-     # 17:48
+#Crud da classe Produto
+Change_put_produto = Produto(nome= "Guarda- roupa", qtde=150, dono=Change_Put_Usuario.id)
+session.add(Change_put_produto)
+session.commit
+
+#fazendo a leitura dos dados R =  read
+print("nome", Change_put_produto.nome)
+print("qtde", Change_put_produto.qtde)
+print("dono", Change_put_produto.dono)
 
 
 
+#fazendo update "U colocando um novo usuario"
+
+Change_Put_Usuario.nome_produto = "Julio freitas"
+session.add(Change_Put_Usuario)
+session.commit()
+
+print("novo nome:" ,Change_Put_Usuario.nome_produto)
+
+# D - delete  deletando um Produto ou Usuario (nesse caso estou deletando um produto)
+
+session.delete(Change_put_produto)
+session.commit()
